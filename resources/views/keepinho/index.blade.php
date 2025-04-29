@@ -7,5 +7,20 @@
 </head>
 <body>
     <h1>Keepinho</h1>
+
+    <form action="{{ route('keep.gravar') }}" method="post">
+        @csrf
+        <textarea name="texto" cols="30" rows="10"></textarea>
+        <br>
+        <button type="submit">Gravar nota</button>
+    </form>
+
+    <hr>
+
+    @foreach ( $notas as $nota)
+        <div>
+            {{ $nota->texto }}
+        </div>
+    @endforeach
 </body>
 </html>
