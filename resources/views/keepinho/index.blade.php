@@ -21,6 +21,8 @@
         <div>
             {{ $nota->texto }}
         </div>
+        <br>
+        <a href="{{ route('keep.editar', $nota->id) }}">Editar</a>
     @endforeach
 </body>
 </html>
