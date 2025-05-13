@@ -6,6 +6,7 @@
     @csrf
 
     <input type="hidden" name='id' value="{{ $nota->id }}">
+    <input name="titulo">{{ $nota->titulo }}</input>
     <textarea name="texto" cols="30" rows="10">{{ $nota->texto }}</textarea>
     <br>
     <button type="submit">Gravar nota</button>

@@ -16,7 +16,12 @@ class KeepinhoController extends Controller
 
     public function gravar(Request $request)
     {
-        Nota::create($request->all());
+        $dados = $request->validate([
+            'titulo' => 'required',
+            'texto' => 'required'
+        ]);
+        
+        Nota::create($dados);
         return redirect()->route('keep.index');
     }
 
@@ -24,6 +29,7 @@ class KeepinhoController extends Controller
     {
         if($request->isMethod('put')){
             $nota = Nota::find($request->id);
+            $nota->titulo = $request->titulo;
             $nota->texto = $request->texto;
             $nota->save();
 

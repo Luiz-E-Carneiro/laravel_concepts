@@ -10,8 +10,14 @@
 <body>
     <h1>Keepinho</h1>
 
+    @if($errors->any())
+        <h5 style="color:red">
+            Erro, magrão
+        </h5>
+    @endif
     <form action="{{ route('keep.gravar') }}" method="post">
         @csrf
+        <input type="text" name="titulo">
         <textarea name="texto" cols="30" rows="10"></textarea>
         <br>
         <button type="submit">Gravar nota</button>
@@ -21,6 +27,8 @@
 
     @foreach ($notas as $nota)
         <div>
+            {{ $nota->titulo }}
+        <br>
             {{ $nota->texto }}
         </div>
         <br>
