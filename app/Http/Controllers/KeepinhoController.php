@@ -33,4 +33,9 @@ class KeepinhoController extends Controller
             'nota'=>$nota
         ]);
     }
+
+    public function apagar(Nota $nota) {
+        $nota->delete();
+        return redirect()->route('keep.index');
+    }
 }

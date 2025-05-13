@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <h1>Keepinho</h1>
 
@@ -17,12 +19,18 @@
 
     <hr>
 
-    @foreach ( $notas as $nota)
+    @foreach ($notas as $nota)
         <div>
             {{ $nota->texto }}
         </div>
         <br>
         <a href="{{ route('keep.editar', $nota->id) }}">Editar</a>
+        <form action="{{ route('keep.apagar', $nota->id) }}" method="post">
+            @method('DELETE')
+            @csrf
+            <input type="submit" value="Apagar">
+        </form>
     @endforeach
 </body>
+
 </html>
