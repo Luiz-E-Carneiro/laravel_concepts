@@ -14,11 +14,16 @@
         <h5 style="color:red">
             Erro, magrão
         </h5>
+        <ul>
+            @foreach ($errors->all() as $err)
+                <li>{{ $err }}</li>
+            @endforeach
+        </ul>
     @endif
     <form action="{{ route('keep.gravar') }}" method="post">
         @csrf
-        <input type="text" name="titulo">
-        <textarea name="texto" cols="30" rows="10"></textarea>
+        <input type="text" name="titulo" value="{{ old('titulo') }}">
+        <textarea name="texto" cols="30" rows="10">{{ old('texto') }}</textarea>
         <br>
         <button type="submit">Gravar nota</button>
     </form>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\NotaRequest;
 use App\Models\Nota;
 use Illuminate\Http\Request;
 
@@ -14,24 +15,19 @@ class KeepinhoController extends Controller
         return view('keepinho/index', ['notas' => $notas]);
     }
 
-    public function gravar(Request $request)
+    public function gravar(NotaRequest $request)
     {
-        $dados = $request->validate([
-            'titulo' => 'required',
-            'texto' => 'required'
-        ]);
+        $dados = $request->validated();
         
         Nota::create($dados);
         return redirect()->route('keep.index');
     }
 
-    public function editar(Nota $nota, Request $request)
+    public function editar(Nota $nota, NotaRequest $request)
     {
         if($request->isMethod('put')){
             $nota = Nota::find($request->id);
-            $nota->titulo = $request->titulo;
-            $nota->texto = $request->texto;
-            $nota->save();
+            $nota->fill($request->all());
 
             return redirect()->route('keep.index');
         }
