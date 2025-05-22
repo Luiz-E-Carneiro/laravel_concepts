@@ -10,6 +10,12 @@
 <body>
     <h1>Keepinho</h1>
 
+    
+
+    <hr>
+    <a href="{{ route('keep.lixeira') }}">🗑️ Lixeira</a>
+    <hr>
+
     @if($errors->any())
         <h5 style="color:red">
             Erro, magrão

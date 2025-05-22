@@ -40,4 +40,18 @@ class KeepinhoController extends Controller
         $nota->delete();
         return redirect()->route('keep.index');
     }
+
+    public function lixeira(Nota $nota) {
+        $notas = Nota::onlyTrashed()->get();
+
+        return view('keepinho.lixeira', [
+            'notas'=>$notas
+        ]);
+    }
+
+    public function restaurar ($nota) {
+        $nota = Nota::withTrashed()->find($nota);
+        $nota->restore();
+        return redirect()->route('keep.lixeira')->with('sucesso', 'Restaurado com Sucesso!');
+    }
 }
