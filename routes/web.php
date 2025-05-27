@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AlunoController;
+use App\Http\Controllers\AutenticaController;
 use App\Http\Controllers\CalculosController;
 use App\Http\Controllers\KeepinhoController;
 use Illuminate\Support\Facades\Route;
@@ -29,6 +30,13 @@ Route::prefix('/keep')->group(function (){
     Route::get('/restaurar/{nota}', [KeepinhoController::class, 'restaurar'])->name('keep.restaurar');
 
 });
+
+
+Route::get('/autentica', [AutenticaController::class, 'index'])->name('autentica.index');
+Route::post('/autentica/gravar', [AutenticaController::class, 'gravar'])->name('autentica.gravar');
+
+Route::get('/autentica/login', [AutenticaController::class, 'login'])->name('autentica.login');
+Route::post('/autentica/login', [AutenticaController::class, 'login']);
 
 
 Route::prefix('/aluno')->group(function () {
