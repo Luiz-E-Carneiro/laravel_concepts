@@ -8,6 +8,14 @@
 </head>
 
 <body>
+    
+    @if (Auth::user())
+        <h4>Olá {{ Auth::user()->name }}</h4>
+        <a href="{{ route('autentica.logout') }}">Deslogar agora!</a>
+        @else
+        <h2>Você ainda n está logado!!!</h2>
+        <a href="{{ route('autentica.login') }}">Fazer login agora!</a>
+    @endif
 
     @if ($errors->any())
         <h5 style="color:red">
@@ -32,6 +40,11 @@
         <br>
         <button type="submit">Gravar</button>
     </form>
+    <hr>
+    @foreach ($usuarios as $user)
+        <li>{{ $user->name }}</li>
+    @endforeach
+    
 </body>
 
 </html>
