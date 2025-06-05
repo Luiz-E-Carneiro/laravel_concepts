@@ -3,6 +3,7 @@
 use App\Http\Controllers\AutenticaController;
 use App\Http\Controllers\CalculosController;
 use App\Http\Controllers\KeepinhoController;
+use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -39,5 +40,8 @@ Route::prefix('/keep')->group(function () {
 
     Route::get('/restaurar/{nota}', [KeepinhoController::class, 'restaurar'])->name('keep.restaurar');
 });
+
+
+Route::resource('produtos', ProdutosController::class);
 
 require __DIR__ . '/auth.php';
