@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProdutoRequest;
 use App\Models\Produto;
 use Illuminate\Http\Request;
 
@@ -12,7 +13,8 @@ class ProdutosController extends Controller
      */
     public function index()
     {
-        return view('produtos.index');
+        $produtos = Produto::all();
+        return view('produtos.index', compact('produtos'));
     }
 
     /**
@@ -26,9 +28,19 @@ class ProdutosController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(ProdutoRequest $request)
     {
-        Produto::create($request->all());
+        $data = $request->validated();
+
+        if($request->hasFile('imagem')){
+            $imagem = $request->file('imagem');
+            $caminhoImagem = $imagem->store('produtos', 'public');
+    
+            $data['imagem'] = $caminhoImagem;
+        }
+
+        Produto::create($data);
+
         return redirect()->route('produtos.index');
     }
 

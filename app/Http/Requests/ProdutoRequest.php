@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class NotaRequest extends FormRequest
+class ProdutoRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,14 +21,11 @@ class NotaRequest extends FormRequest
      */
     public function rules(): array
     {
-        if(!$this->isMethod('GET')){
-
-            return [
-                'titulo' => 'required|min:3|max:255',
-                'texto' => 'required'
-            ];
-        }
-
-        return [];
+        return [
+            'nome' => 'required',
+            'preco' => 'required|numeric',
+            'descricao'=> 'required',
+            'imagem' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ];
     }
 }
