@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AutenticaController;
 use App\Http\Controllers\CalculosController;
+use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\KeepinhoController;
 use App\Http\Controllers\ProdutosController;
 use App\Http\Controllers\ProfileController;
@@ -29,19 +30,26 @@ Route::prefix('/keep')->group(function () {
     Route::get('/', [KeepinhoController::class, 'index'])->name('keep.index');
 
     Route::post('/gravar', [KeepinhoController::class, 'gravar'])->name('keep.gravar');
-
+    
     Route::get('/editar/{nota}', [KeepinhoController::class, 'editar'])->name('keep.editar');
-
+    
     Route::put('/editar', [KeepinhoController::class, 'editar'])->name('keep.editarGravar');
-
+    
     Route::delete('/apagar/{nota}', [KeepinhoController::class, 'apagar'])->name('keep.apagar');
-
+    
     Route::get('/lixeira', [KeepinhoController::class, 'lixeira'])->name('keep.lixeira');
-
+    
     Route::get('/restaurar/{nota}', [KeepinhoController::class, 'restaurar'])->name('keep.restaurar');
 });
 
 
 Route::resource('produtos', ProdutosController::class);
+
+
+Route::prefix('/carrinho')->group(function () {
+    Route::get('/', [CarrinhoController::class, 'index'])->name('carrinho.index');
+    Route::get('/adicionar/{produto}', [CarrinhoController::class, 'add'])->name('carrinho.add');
+    Route::get('/remover/{produto}', [CarrinhoController::class, 'delete'])->name('carrinho.delete');
+});
 
 require __DIR__ . '/auth.php';

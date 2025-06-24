@@ -22,6 +22,12 @@
                             <img src="{{ asset('storage'. '/' . $produto->imagem) }}" alt="imagem" class="w-full">
                             <p>{{ $produto->descricao }}</p>
                             <h4>R$ {{ $produto->preco }},00</h4>
+
+                            <div>
+                                <x-link-button href="{{ route('carrinho.add', $produto->id) }}">
+                                    + Add Carrinho
+                                </x-link-button>
+                            </div>
                         </div>
                     @endforeach
                 </div>
