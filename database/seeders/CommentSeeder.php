@@ -14,14 +14,6 @@ class CommentSeeder extends Seeder
      */
     public function run(): void
     {
-        Comment::create([
-            'name' =>  Str::random(10)
-        ]);
-        Comment::create([
-            'name' =>  Str::random(10)
-        ]);
-        Comment::create([
-            'name' =>  Str::random(10)
-        ]);
+        
     }
 }
