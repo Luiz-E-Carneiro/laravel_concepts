@@ -22,5 +22,14 @@ class CategorySeeder extends Seeder
         Category::create([
             'name' => 'Abacaxi'
         ]);
+        Category::create([
+            'name' => 'Estevan'
+        ]);
+        Category::create([
+            'name' => 'Batati'
+        ]);
+        Category::create([
+            'name' => 'Batatá'
+        ]);
     }
 }
